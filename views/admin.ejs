@@ -1,0 +1,28 @@
+<!-- admin.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Page</title>
+</head>
+<body>
+  <h1>Welcome to the Admin Page</h1>
+
+  <h2>Documents:</h2>
+  <% users.forEach(function(user) { %>
+       <p><%= "Username: "+user.username %></p>
+       <input type="hidden" name="id_user" value="<%= user.id_user %>"> 
+       <!-- <p><%= "Avatar image: "+ user.avatar_url %></p> -->
+      <img src="https://avatars.githubusercontent.com/u/<%= user.id_user %>" alt="Profile Picture" style="width: 200px; height: 200px;">
+      <p><%= "Name: "+user.name %></p>
+      <p><%= "ID: "+user.id_user %></p>
+      <p><%= "Location: "+user.location %></p>
+      <p><%= "Public Repositories: "+user.public_repos %></p>
+      <p><%= "Followers "+user.followers %></p>
+      <form action="/admin/delete/<%= user.id_user %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    <br>
+    <hr>
+  <% }) %>
+</body>
+</html>

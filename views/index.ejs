@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub User Info</title>
+</head>
+<body>
+    <h1><a href="/login">Login</a></h1>
+  <h1>GitHub User Info</h1>
+
+  <form action="/user" method="GET">
+    <input type="text" name="username" placeholder="Enter a GitHub username">
+    <button type="submit">Get User Info</button>
+  </form>
+
+  <% if (user) { %>
+    <h2>Username: <%= user.login %></h2>
+    <img src="<%= user.avatar_url %>" alt="Profile Picture" style="width: 200px; height: 200px;">
+    <p>Name: <%= user.name %></p>
+    <p>Id: <%= user.id%></p>
+    <p>Location: <%= user.location %></p>
+    <p>Public Repositories: <%= user.public_repos %></p>
+    <p>Followers: <%= user.followers %></p>
+
+    <% if (user) { %>
+        <!-- Display user details -->
+        ...
+        <form action="/save" method="POST">
+          <input type="hidden" name="username" value="<%= user.login %>">
+          <input type="hidden" name="id_user" value="<%= user.id %>">
+            <input type="hidden" name="avatar_url" value="<%= user.avatar_url %>">
+            <input type="hidden" name="name" value="<%= user.name %>">
+            <input type="hidden" name="location" value="<%= user.location %>">
+            <input type="hidden" name="public_repos" value="<%= user.public_repos %>">
+            <input type="hidden" name="followers" value="<%= user.followers %>">
+          <button type="submit">Save User</button>
+        </form>
+      <% } %>
+      
+  <% } %>
+</body>
+</html>
